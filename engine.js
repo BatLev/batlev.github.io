@@ -2,6 +2,7 @@ import _TimeManager from "./timemanager.js"
 import _gamestate from "./gamestate.js"
 import _eventhandler from "./eventhandler.js"
 import _fullscreenmanager from "./fullscreenmanager.js"
+import _renderer from './renderer.js'
 
 let canvas;
 let context;
@@ -19,6 +20,7 @@ let timemanager = _TimeManager;
 let gamestate = _gamestate;
 let eventhandler = _eventhandler;
 let fullscreenmanager = _fullscreenmanager;
+let renderer = _renderer;
 
 function init(){
         canvas = document.getElementById('canvas');
@@ -39,12 +41,13 @@ function init(){
 function gameLoop() {
 	if(gamestate.pause){return}
     	draw();
+	renderer.render(gamestate.getRenderElements(),context)
     	window.requestAnimationFrame(gameLoop);
 	}
 
 function draw(){
 	context.fillStyle = '#000000'
 	context.fillRect(0,0,width,height)
-        context.fillStyle = '#ffffff';
-        context.fillRect(rectposition.x, rectposition.y, 200, 200);
+	//context.fillStyle = '#ffffff';
+        //context.fillRect(rectposition.x, rectposition.y, 200, 200);
 	}
